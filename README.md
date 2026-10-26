@@ -2,8 +2,9 @@
 
 FastAPI service for the AUREX storefront. It serves the product catalog and
 deals, records WhatsApp orders, consultation requests, and VIP subscriptions,
-and provides protected administration endpoints. This folder is independently
-deployable as the `aurexb` repository backend.
+and provides protected administration endpoints. `fastapi[standard]` installs
+the FastAPI CLI used by FastAPI Cloud. This folder is independently deployable
+as the `aurexb` repository backend.
 
 ## Run locally
 
