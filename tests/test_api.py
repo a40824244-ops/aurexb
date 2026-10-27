@@ -7,9 +7,9 @@ from app.main import app
 
 
 def test_store_api_and_admin_access(tmp_path: Path, monkeypatch):
-    monkeypatch.setenv("DATABASE_PATH", str(tmp_path / "test.sqlite3"))
-    monkeypatch.setenv("ADMIN_PASSWORD", "test-password")
-    monkeypatch.setenv("SECRET_KEY", secrets.token_hex(32))
+    monkeypatch.setenv("dATABASE_PATH", str(tmp_path / "test.sqlite3"))
+    monkeypatch.setenv("aDMIN_PASSWORD", "test-password")
+    monkeypatch.setenv("sECRET_KEY", secrets.token_hex(32))
 
     with TestClient(app) as client:
         root = client.get("/")
@@ -105,9 +105,9 @@ def test_store_api_and_admin_access(tmp_path: Path, monkeypatch):
 
 
 def test_admin_authentication_fails_closed_without_secrets(tmp_path, monkeypatch):
-    monkeypatch.setenv("DATABASE_PATH", str(tmp_path / "unconfigured.sqlite3"))
-    monkeypatch.delenv("ADMIN_PASSWORD", raising=False)
-    monkeypatch.delenv("SECRET_KEY", raising=False)
+    monkeypatch.setenv("dATABASE_PATH", str(tmp_path / "unconfigured.sqlite3"))
+    monkeypatch.delenv("aDMIN_PASSWORD", raising=False)
+    monkeypatch.delenv("sECRET_KEY", raising=False)
 
     with TestClient(app) as client:
         login = client.post("/api/auth/login", json={"password": "anything"})

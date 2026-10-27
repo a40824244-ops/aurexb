@@ -16,8 +16,8 @@ py -m venv .venv
 Copy-Item .env.example .env
 ```
 
-Edit `.env` and set unique, strong values for `ADMIN_PASSWORD` and
-`SECRET_KEY` (generate a key with
+Edit `.env` and set unique, strong values for `aDMIN_PASSWORD` and
+`sECRET_KEY` (generate a key with
 `py -c "import secrets; print(secrets.token_urlsafe(48))"`). Then start the API:
 
 ```powershell
@@ -32,7 +32,7 @@ runs.
 The React app uses `http://localhost:5000/api` by default. In the original
 full-project checkout, `npm run backend` is a shortcut to start this API.
 Set `VITE_API_BASE_URL` in the frontend `.env` file to use a different API URL.
-Configure `CORS_ORIGINS` in `.env` as a comma-separated list when the frontend
+Configure `cORS_ORIGINS` in `.env` as a comma-separated list when the frontend
 is served from a different origin.
 
 ## API

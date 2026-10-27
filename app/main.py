@@ -28,7 +28,7 @@ ORDER_STATUSES = {"processing", "shipped", "delivered", "cancelled"}
 
 
 def database_path() -> Path:
-    configured_path = os.getenv("DATABASE_PATH", "./aurex.sqlite3")
+    configured_path = os.getenv("dATABASE_PATH", "./aurex.sqlite3")
     path = Path(configured_path)
     if not path.is_absolute():
         path = Path(__file__).resolve().parents[1] / path
@@ -130,7 +130,7 @@ app = FastAPI(
 cors_origins = [
     origin.strip()
     for origin in os.getenv(
-        "CORS_ORIGINS",
+        "cORS_ORIGINS",
         "http://localhost:5173,http://127.0.0.1:5173",
     ).split(",")
     if origin.strip()
@@ -234,7 +234,7 @@ def _valid_admin_token(token: str, secret: str) -> bool:
 def require_admin(
     token: Annotated[str | None, Header(alias="x-admin-token")] = None,
 ) -> None:
-    secret = os.getenv("SECRET_KEY")
+    secret = os.getenv("sECRET_KEY")
     if not secret:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
@@ -281,8 +281,8 @@ def api_root() -> dict[str, str]:
 
 @app.post("/api/auth/login")
 def login(credentials: LoginRequest) -> dict[str, Any]:
-    admin_password = os.getenv("ADMIN_PASSWORD")
-    secret = os.getenv("SECRET_KEY")
+    admin_password = os.getenv("aDMIN_PASSWORD")
+    secret = os.getenv("sECRET_KEY")
     if not admin_password or not secret:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
